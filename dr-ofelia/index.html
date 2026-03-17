@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EyeSpy | Dr. Ofelia Santos</title>
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --card: #ffffff;
+      --text: #13233d;
+      --muted: #5f6f86;
+      --brand: #0d3b79;
+      --brand-strong: #08274f;
+      --accent: #e7eefc;
+      --border: #d9e2f1;
+      --disabled: #9ca9bc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #eef3fb 0%, var(--bg) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.45;
+    }
+
+    main {
+      width: min(100%, 540px);
+      margin: 0 auto;
+      padding: 22px 16px 28px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 16px;
+      box-shadow: 0 12px 28px rgba(12, 32, 64, 0.08);
+    }
+
+    .brand {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.5rem, 4.8vw, 2rem);
+      line-height: 1.15;
+    }
+
+    .benefit {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .actions {
+      display: grid;
+      gap: 10px;
+      margin: 0 0 12px;
+    }
+
+    .store-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 13px 14px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      border: 1px solid var(--brand);
+      color: #fff;
+      background: var(--brand);
+    }
+
+    .store-btn.android {
+      background: var(--brand-strong);
+      border-color: var(--brand-strong);
+    }
+
+    .store-btn.disabled {
+      background: var(--disabled);
+      border-color: var(--disabled);
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .action-note {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .fallback {
+      background: var(--accent);
+      border: 1px solid #c9d9f5;
+      border-radius: 12px;
+      padding: 12px;
+      margin: 0 0 12px;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .code {
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      white-space: nowrap;
+    }
+
+    .privacy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="panel">
+      <span class="brand">EyeSpy</span>
+      <h1>Dr. Ofelia Santos</h1>
+      <p class="benefit">EyeSpy helps you stay on track with contact lens care and reminds you to rebook at the right time.</p>
+      <div class="actions">
+        <a class="store-btn ios disabled" href="#" aria-disabled="true">iPhone Test Build Coming Soon</a>
+        <a class="store-btn android disabled" href="#" aria-disabled="true">Android Build Coming Later</a>
+      </div>
+      <p class="action-note">This page is live. The public app install link is the next piece. Until then, this is the sign on the door, not the whole building.</p>
+      <div class="fallback">
+        If setup did not auto-link, open EyeSpy and enter clinic code: <span class="code">ES-OFELIA</span>.
+      </div>
+      <p class="privacy">Private by design: your data stays on your device. This page only connects EyeSpy to your clinic.</p>
+    </section>
+  </main>
+</body>
+</html>

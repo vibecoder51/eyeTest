@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EyeSpy Clinic Pages</title>
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --card: #ffffff;
+      --text: #13233d;
+      --muted: #5f6f86;
+      --brand: #0d3b79;
+      --border: #d9e2f1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #eef3fb 0%, var(--bg) 100%);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .panel {
+      width: min(100%, 560px);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px 20px;
+      box-shadow: 0 12px 28px rgba(12, 32, 64, 0.08);
+    }
+
+    .brand {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.6rem, 4.8vw, 2.1rem);
+      line-height: 1.15;
+    }
+
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 1px solid var(--brand);
+      color: #fff;
+      background: var(--brand);
+    }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <span class="brand">EyeSpy</span>
+    <h1>Clinic Pages</h1>
+    <p>This is the public shelf for live EyeSpy clinic pages. Nothing fancy. Just the page the QR code can land on without exploding.</p>
+    <a href="/eyeTest/dr-ofelia/">Open Dr. Ofelia Santos Page</a>
+  </main>
+</body>
+</html>
