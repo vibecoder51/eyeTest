@@ -1,0 +1,16 @@
+[
+  {
+    "doctorID": "OFELIA",
+    "clinicCode": "ES-OFELIA",
+    "doctorName": "Dr. Ofelia Santos",
+    "bookingURL": "https://www.oscarwylee.com.au/booking#tab2",
+    "status": "active"
+  },
+  {
+    "doctorID": "KIM",
+    "clinicCode": "ES-KIM",
+    "doctorName": "Kim Parker",
+    "bookingURL": "https://www.warbyparker.com/virtual-vision-test",
+    "status": "active"
+  }
+]
