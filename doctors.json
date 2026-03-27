@@ -19,5 +19,12 @@
     "doctorName": "QA2 Test Doctor",
     "bookingURL": "https://example.com",
     "status": "active"
+  },
+  {
+    "doctorID": "QA3",
+    "clinicCode": "ES-QA3",
+    "doctorName": "QA3 Test Doctor",
+    "bookingURL": "https://example.com",
+    "status": "active"
   }
 ]
