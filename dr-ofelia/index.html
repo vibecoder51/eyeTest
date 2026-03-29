@@ -4,58 +4,77 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EyeSpy | Dr. Ofelia Santos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f6f8fc;
-      --card: #ffffff;
+      --bg: #f8f5ef;
+      --card: rgba(255, 255, 255, 0.82);
       --text: #13233d;
       --muted: #5f6f86;
-      --brand: #0d3b79;
-      --brand-strong: #08274f;
-      --accent: #e7eefc;
-      --border: #d9e2f1;
-      --disabled: #9ca9bc;
+      --brand: #0a1628;
+      --brand-strong: #13284c;
+      --accent: #eef3fb;
+      --accent-warm: rgba(232, 168, 32, 0.15);
+      --border: rgba(19, 35, 61, 0.12);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(180deg, #eef3fb 0%, var(--bg) 100%);
+      font-family: "DM Sans", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(232, 168, 32, 0.16), transparent 30%),
+        linear-gradient(180deg, #fffdf8 0%, var(--bg) 100%);
       color: var(--text);
       min-height: 100vh;
-      line-height: 1.45;
+      line-height: 1.55;
     }
 
     main {
-      width: min(100%, 540px);
+      width: min(100%, 560px);
       margin: 0 auto;
-      padding: 22px 16px 28px;
+      padding: 22px 16px 34px;
+    }
+
+    .backlink {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
     }
 
     .panel {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px 16px;
-      box-shadow: 0 12px 28px rgba(12, 32, 64, 0.08);
+      backdrop-filter: blur(14px);
+      border-radius: 24px;
+      padding: 24px 18px;
+      box-shadow: 0 18px 44px rgba(12, 32, 64, 0.1);
     }
 
     .brand {
       display: inline-block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.45rem;
       font-weight: 700;
       color: var(--brand);
-      margin-bottom: 14px;
-      letter-spacing: 0.2px;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
     }
 
     h1 {
       margin: 0 0 10px;
-      font-size: clamp(1.5rem, 4.8vw, 2rem);
-      line-height: 1.15;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 6vw, 2.7rem);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
     }
 
     .benefit {
@@ -64,10 +83,20 @@
       font-size: 1rem;
     }
 
+    .launch-note {
+      padding: 14px;
+      border-radius: 16px;
+      background: var(--accent-warm);
+      border: 1px solid rgba(232, 168, 32, 0.24);
+      margin: 0 0 18px;
+      font-size: 0.93rem;
+      color: var(--text);
+    }
+
     .actions {
       display: grid;
       gap: 10px;
-      margin: 0 0 12px;
+      margin: 0 0 18px;
     }
 
     .store-btn {
@@ -76,7 +105,7 @@
       text-align: center;
       text-decoration: none;
       border-radius: 12px;
-      padding: 13px 14px;
+      padding: 14px;
       font-weight: 600;
       font-size: 0.98rem;
       border: 1px solid var(--brand);
@@ -89,24 +118,17 @@
       border-color: var(--brand-strong);
     }
 
-    .store-btn.disabled {
-      background: var(--disabled);
-      border-color: var(--disabled);
-      pointer-events: none;
-      cursor: default;
-    }
-
-    .action-note {
-      margin: 0 0 18px;
+    .store-btn.pending {
       color: var(--muted);
-      font-size: 0.88rem;
+      background: rgba(19, 35, 61, 0.04);
+      border-color: rgba(19, 35, 61, 0.1);
     }
 
     .fallback {
       background: var(--accent);
-      border: 1px solid #c9d9f5;
-      border-radius: 12px;
-      padding: 12px;
+      border: 1px solid rgba(201, 217, 245, 0.9);
+      border-radius: 16px;
+      padding: 14px;
       margin: 0 0 12px;
       color: var(--text);
       font-size: 0.95rem;
@@ -123,23 +145,50 @@
       color: var(--muted);
       font-size: 0.9rem;
     }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .footer-links a {
+      color: var(--brand);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
   <main>
+    <a class="backlink" href="/">← Back to EyeSpy</a>
     <section class="panel">
       <span class="brand">EyeSpy</span>
       <h1>Dr. Ofelia Santos</h1>
       <p class="benefit">EyeSpy helps you stay on track with contact lens care and reminds you to rebook at the right time.</p>
+
+      <div class="launch-note">
+        EyeSpy store links will appear here the moment launch clears. Until then, this page keeps the clinic handoff honest instead of pretending some random other app is ours.
+      </div>
+
       <div class="actions">
-        <a class="store-btn ios disabled" href="#" aria-disabled="true">iPhone Test Build Coming Soon</a>
-        <a class="store-btn android disabled" href="#" aria-disabled="true">Android Build Coming Later</a>
+        <span class="store-btn pending">iPhone App Store link goes live here</span>
+        <span class="store-btn pending android">Android Play Store link goes live here</span>
+        <a class="store-btn android" href="https://www.oscarwylee.com.au/booking#tab2" target="_blank" rel="noopener noreferrer">Book directly with Dr. Ofelia</a>
       </div>
-      <p class="action-note">This page is live. The public app install link is the next piece. Until then, this is the sign on the door, not the whole building.</p>
+
       <div class="fallback">
-        If setup did not auto-link, open EyeSpy and enter clinic code: <span class="code">ES-OFELIA</span>.
+        If setup didn’t auto-link, open EyeSpy and enter clinic code: <span class="code">ES-OFELIA</span>.
       </div>
+
       <p class="privacy">Private by design: your data stays on your device. This page only connects EyeSpy to your clinic.</p>
+
+      <div class="footer-links">
+        <a href="/privacy/">Privacy</a>
+        <a href="/support/">Support</a>
+      </div>
     </section>
   </main>
 </body>

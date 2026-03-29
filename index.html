@@ -3,81 +3,855 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EyeSpy Clinic Pages</title>
+  <title>EyeSpy | Contact Lens Routine, Reminders, and Rebooking</title>
+  <meta name="description" content="EyeSpy helps contact lens wearers track wear time, get take-out reminders, and rebook with the right clinic when the time comes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f6f8fc;
-      --card: #ffffff;
-      --text: #13233d;
-      --muted: #5f6f86;
-      --brand: #0d3b79;
-      --border: #d9e2f1;
+      --cream: #faf7f2;
+      --white: #ffffff;
+      --navy: #0a1628;
+      --navy-mid: #142040;
+      --navy-soft: #1f315e;
+      --gold: #e8a820;
+      --gold-soft: #f6d97b;
+      --text: #243447;
+      --muted: #66778c;
+      --line: rgba(10, 22, 40, 0.12);
+      --shadow: 0 24px 70px rgba(10, 22, 40, 0.12);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(180deg, #eef3fb 0%, var(--bg) 100%);
+      font-family: "DM Sans", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(232, 168, 32, 0.16), transparent 30%),
+        linear-gradient(180deg, #fffdf8 0%, var(--cream) 100%);
       color: var(--text);
-      display: grid;
-      place-items: center;
-      padding: 20px;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    .panel {
-      width: min(100%, 560px);
-      background: var(--card);
-      border: 1px solid var(--border);
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin-top: 16px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(10, 22, 40, 0.08);
       border-radius: 18px;
-      padding: 24px 20px;
-      box-shadow: 0 12px 28px rgba(12, 32, 64, 0.08);
+      box-shadow: 0 14px 40px rgba(10, 22, 40, 0.08);
     }
 
     .brand {
-      display: inline-block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.7rem;
       font-weight: 700;
-      color: var(--brand);
-      margin-bottom: 14px;
+      color: var(--navy);
+      letter-spacing: -0.03em;
+    }
+
+    .brand span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-link,
+    .nav-cta,
+    .hero-primary,
+    .hero-secondary,
+    .practice-link,
+    .footer-link {
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .nav-link {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .nav-link:hover { background: rgba(10, 22, 40, 0.05); }
+
+    .nav-cta,
+    .hero-primary,
+    .practice-link {
+      background: var(--navy);
+      color: var(--white);
+      border: 1px solid var(--navy);
+      box-shadow: 0 12px 30px rgba(10, 22, 40, 0.16);
+    }
+
+    .nav-cta,
+    .hero-primary,
+    .hero-secondary,
+    .practice-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .hero-secondary {
+      color: var(--navy);
+      border: 1px solid rgba(10, 22, 40, 0.14);
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .nav-cta:hover,
+    .hero-primary:hover,
+    .hero-secondary:hover,
+    .practice-link:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      padding: 58px 0 34px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gold);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(232, 168, 32, 0.14);
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: -0.04em;
+      line-height: 1.04;
+      color: var(--navy);
     }
 
     h1 {
-      margin: 0 0 10px;
-      font-size: clamp(1.6rem, 4.8vw, 2.1rem);
-      line-height: 1.15;
+      font-size: clamp(3rem, 7vw, 5.6rem);
+      margin-bottom: 18px;
     }
 
-    p {
-      margin: 0 0 18px;
+    h2 {
+      font-size: clamp(2rem, 4.8vw, 3.2rem);
+      margin-bottom: 14px;
+    }
+
+    .hero-copy p,
+    .section-copy,
+    .section-sub,
+    .download-note,
+    .card p,
+    .privacy-box p,
+    .practice-panel p,
+    .footer-copy {
       color: var(--muted);
-      line-height: 1.5;
     }
 
-    a {
-      display: block;
-      width: 100%;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 12px;
-      padding: 14px 16px;
+    .hero-copy p {
+      max-width: 620px;
+      font-size: 1.08rem;
+      margin: 0 0 24px;
+    }
+
+    .hero-proof {
+      margin-top: 14px;
+      font-size: 0.92rem;
+      color: var(--muted);
       font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(10, 22, 40, 0.08);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .pill::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+    }
+
+    .hero-visual,
+    .download-strip,
+    .privacy-box,
+    .practice-panel,
+    .card {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(10, 22, 40, 0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-visual {
+      border-radius: 28px;
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: auto -90px -120px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(232, 168, 32, 0.18), transparent 70%);
+    }
+
+    .phone {
+      width: min(100%, 290px);
+      margin: 0 auto;
+      background: linear-gradient(180deg, #152444 0%, #0b1630 100%);
+      border-radius: 34px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      padding: 18px 16px 16px;
+      box-shadow: 0 30px 70px rgba(10, 22, 40, 0.34);
+      color: var(--white);
+      position: relative;
+      z-index: 1;
+    }
+
+    .phone-notch {
+      width: 88px;
+      height: 6px;
+      border-radius: 999px;
+      margin: 0 auto 18px;
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .phone-top,
+    .mini-row,
+    .notification-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .icon-chip {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold), #c87a0a);
+      color: var(--navy);
       font-size: 1rem;
-      border: 1px solid var(--brand);
-      color: #fff;
-      background: var(--brand);
+      font-weight: 700;
+    }
+
+    .phone-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .session-card,
+    .notification-card {
+      border-radius: 20px;
+      margin-top: 14px;
+    }
+
+    .session-card {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .kicker {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.54);
+      margin-bottom: 8px;
+    }
+
+    .session-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .session-sub {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .bar {
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .bar > span {
+      display: block;
+      width: 72%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--gold), #ffce5e);
+    }
+
+    .notification-card {
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--navy);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .notification-head span {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6d7688;
+      font-weight: 700;
+    }
+
+    .notification-title {
+      margin: 10px 0 4px;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .notification-body {
+      font-size: 0.8rem;
+      color: #506077;
+    }
+
+    .notification-action {
+      margin-top: 12px;
+      padding: 9px 12px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .section { padding: 28px 0; }
+
+    .section-sub {
+      max-width: 700px;
+      margin: 0 0 22px;
+      font-size: 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .card strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.08rem;
+      color: var(--navy);
+    }
+
+    .path-card {
+      border-radius: 24px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(10, 22, 40, 0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .path-card.clinic {
+      background: linear-gradient(180deg, rgba(232, 168, 32, 0.12), rgba(255, 255, 255, 0.82));
+    }
+
+    .path-card h3 {
+      margin: 0 0 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+    }
+
+    .path-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .path-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .path-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .path-item::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      margin-top: 5px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+      flex: 0 0 auto;
+    }
+
+    .launch-tip {
+      margin-top: 14px;
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .num {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 14px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .download-strip,
+    .privacy-box,
+    .practice-panel {
+      border-radius: 28px;
+      padding: 24px;
+      margin-top: 10px;
+    }
+
+    .download-strip {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .store-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .store-card {
+      border-radius: 18px;
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(10, 22, 40, 0.04), rgba(10, 22, 40, 0.02));
+      border: 1px solid rgba(10, 22, 40, 0.1);
+    }
+
+    .store-card strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .pending {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(232, 168, 32, 0.14);
+      color: #86610b;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    .pending::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .privacy-box {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .privacy-stat {
+      padding: 20px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-soft));
+      color: var(--white);
+    }
+
+    .privacy-stat strong {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .privacy-stat p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .privacy-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(10, 22, 40, 0.05);
+      border: 1px solid rgba(10, 22, 40, 0.1);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .practice-panel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .practice-panel::before {
+      content: "";
+      position: absolute;
+      inset: -80px -120px auto auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(232, 168, 32, 0.18), transparent 68%);
+      pointer-events: none;
+    }
+
+    footer {
+      padding: 18px 0 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy { font-size: 0.92rem; }
+
+    .footer-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .download-strip,
+      .privacy-box,
+      .path-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual { order: -1; }
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .shell { width: min(100% - 24px, 1160px); }
+      nav { margin-top: 12px; padding: 12px 14px; }
+      .nav-links { justify-content: flex-start; }
+      .hero { padding: 34px 0 20px; }
+      .brand { font-size: 1.45rem; }
+      .hero-copy p { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
-  <main class="panel">
-    <span class="brand">EyeSpy</span>
-    <h1>Clinic Pages</h1>
-    <p>This is the public shelf for live EyeSpy clinic pages. Nothing fancy. Just the page the QR code can land on without exploding.</p>
-    <a href="/eyeTest/dr-ofelia/">Open Dr. Ofelia Santos Page</a>
-  </main>
+  <div class="shell">
+    <nav>
+      <a class="brand" href="/">Eye<span>Spy</span></a>
+      <div class="nav-links">
+        <a class="nav-link" href="#how">How it works</a>
+        <a class="nav-link" href="#launch">Launch</a>
+        <a class="nav-link" href="/for-practices/">For practices</a>
+        <a class="nav-cta" href="/for-practices/">See practice page</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">For contact lens wearers</div>
+        <h1>The contact lens app that stays useful.</h1>
+        <p>
+          Track wear time, get take-out reminders before nights go sideways, and keep your lens routine from dissolving into guesswork.
+          If your clinic is on EyeSpy, their booking link is always one tap away.
+        </p>
+        <div class="hero-actions">
+          <a class="hero-primary" href="#how">See how it works</a>
+          <a class="hero-secondary" href="/for-practices/">For practices</a>
+        </div>
+        <div class="pill-row">
+          <span class="pill">One-tap tracking</span>
+          <span class="pill">Nightly reminders</span>
+          <span class="pill">History and widget</span>
+          <span class="pill">Clinic rebooking when linked</span>
+        </div>
+        <div class="hero-proof">Works as a clean standalone routine app. Gets smarter when your clinic plugs in.</div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-top">
+            <div class="mini-row">
+              <div class="icon-chip">👁</div>
+              <div>
+                <div class="phone-title">EyeSpy</div>
+                <div class="session-sub">Iris is on duty</div>
+              </div>
+            </div>
+            <div class="session-sub">9:41</div>
+          </div>
+
+          <div class="session-card">
+            <div class="kicker">Today’s wear</div>
+            <div class="session-title">Lenses in. Tracking started.</div>
+            <div class="session-sub">Take-out reminder set for 10:00 PM</div>
+            <div class="bar"><span></span></div>
+          </div>
+
+          <div class="session-card">
+            <div class="kicker">History pulse</div>
+            <div class="session-title">4 on-time nights in a row</div>
+            <div class="session-sub">Clean routine. No detective work required.</div>
+          </div>
+
+          <div class="notification-card">
+            <div class="notification-head">
+              <span>EyeSpy</span>
+              <span>now</span>
+            </div>
+            <div class="notification-title">Prescription expires soon</div>
+            <div class="notification-body">Tap to book with your clinic before this turns into a “how old is this prescription?” evening.</div>
+            <div class="notification-action">Open booking link</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="eyebrow">How it works</div>
+      <h2>Three simple jobs. No app circus.</h2>
+      <p class="section-sub">
+        EyeSpy is not trying to become an electronic health record wearing fake glasses. It does three things well:
+        helps you remember, helps you stay consistent, and helps you get back to the right clinic at the right time.
+      </p>
+      <div class="grid-3">
+        <article class="card">
+          <div class="num">1</div>
+          <strong>Start a wear session fast</strong>
+          <p>Tap when your lenses go in. EyeSpy tracks the session and keeps the day anchored to your own routine.</p>
+        </article>
+        <article class="card">
+          <div class="num">2</div>
+          <strong>Get nudged before late nights stack up</strong>
+          <p>Take-out reminders, replacement timing, and optional morning checks keep the routine from quietly rotting in the background.</p>
+        </article>
+        <article class="card">
+          <div class="num">3</div>
+          <strong>See what your pattern actually looks like</strong>
+          <p>History, streaks, overdue nights, and widget status turn the habit into something visible instead of vibes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="launch">
+      <div class="download-strip">
+        <div>
+          <div class="eyebrow">Launch status</div>
+          <h2>The store links land here when release clears.</h2>
+          <p class="download-note">
+            This site is ready before the stores are. The moment iPhone and Android are live, the real download links drop into this slot.
+            Until then, no fake buttons pretending to be another app.
+          </p>
+          <div class="launch-tip">If your clinic gives you a code, keep it. EyeSpy lets you link the clinic later in Settings too.</div>
+        </div>
+        <div class="store-grid">
+          <div class="store-card">
+            <strong>iPhone</strong>
+            <p>App Store link goes live here after approval.</p>
+            <span class="pending">Waiting on release</span>
+          </div>
+          <div class="store-card">
+            <strong>Android</strong>
+            <p>Google Play link goes live here after release.</p>
+            <span class="pending">Waiting on release</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="eyebrow">Two clean paths</div>
+      <h2>Use EyeSpy solo. Or let your clinic plug into it.</h2>
+      <p class="section-sub">
+        This is the part most health apps explain terribly. EyeSpy is still useful if no clinic is involved. If your clinic uses it, the booking path gets attached to the routine you already built.
+      </p>
+      <div class="path-grid">
+        <article class="path-card">
+          <h3>Use it solo</h3>
+          <p>No clinic required. Just a clean routine app that helps you stop winging it.</p>
+          <div class="path-list">
+            <div class="path-item">Track when your lenses go in and out.</div>
+            <div class="path-item">Get nightly reminders before late wear becomes normal.</div>
+            <div class="path-item">See history, streaks, and overdue nights without digging.</div>
+          </div>
+        </article>
+        <article class="path-card clinic">
+          <h3>Use it with your clinic</h3>
+          <p>If your clinic is on EyeSpy, the app keeps the routine and the rebooking path pointed back to the right place.</p>
+          <div class="path-list">
+            <div class="path-item">Your clinic can hand you a code or direct setup link.</div>
+            <div class="path-item">EyeSpy remembers the clinic inside the app.</div>
+            <div class="path-item">When rebooking time comes, their booking link is one tap away.</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="privacy-box">
+        <div class="privacy-stat">
+          <strong>Private by design</strong>
+          <p>
+            In this version, EyeSpy keeps the patient routine on-device and uses only the minimum plumbing needed for purchases,
+            clinic linking, and deep-link attribution.
+          </p>
+        </div>
+        <div>
+          <div class="eyebrow">No smoke</div>
+          <h2>Clear enough for users. Clean enough for review.</h2>
+          <p class="section-copy">
+            If you are checking whether this thing feels real, that is fair. That is why the legal and support pages live on the same domain,
+            not in some abandoned Dropbox cave.
+          </p>
+          <div class="privacy-links">
+            <a class="footer-link" href="/privacy/">Privacy policy</a>
+            <a class="footer-link" href="/support/">Support</a>
+            <a class="footer-link" href="/dr-ofelia/">Clinic example</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="practice-panel">
+        <div class="eyebrow">For optometrists</div>
+        <h2>EyeSpy for Practices exists too.</h2>
+        <p class="section-sub">
+          The patient app is only half the machine. The other half is the clinic-linked handoff, QR setup, and rebooking flow that points back to the doctor instead of a generic void.
+        </p>
+        <a class="practice-link" href="/for-practices/">Open the practice landing page</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-copy">EyeSpy. Contact lens routine, reminders, and clinic-linked rebooking without the usual app sludge.</div>
+      <div class="footer-actions">
+        <a class="footer-link" href="/for-practices/">For practices</a>
+        <a class="footer-link" href="/privacy/">Privacy</a>
+        <a class="footer-link" href="/support/">Support</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>

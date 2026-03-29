@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EyeSpy Privacy Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #faf7f2;
+      --ink: #0f1b30;
+      --muted: #5e6c82;
+      --line: rgba(15, 27, 48, 0.12);
+      --gold: #e7aa23;
+      --card: rgba(255, 255, 255, 0.82);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "DM Sans", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(231, 170, 35, 0.18), transparent 28%),
+        linear-gradient(180deg, #fffdf8 0%, var(--cream) 100%);
+      color: var(--ink);
+      line-height: 1.68;
+    }
+
+    .wrap {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .hero,
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: 0 18px 60px rgba(15, 27, 48, 0.08);
+    }
+
+    .hero {
+      padding: 28px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    h1, h2 {
+      margin: 0 0 10px;
+      font-family: "Cormorant Garamond", serif;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      margin-bottom: 12px;
+    }
+
+    p, li {
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .lede,
+    .muted {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    ul {
+      margin: 12px 0 0 18px;
+      padding: 0;
+    }
+
+    a {
+      color: var(--ink);
+      text-underline-offset: 3px;
+      font-weight: 600;
+    }
+
+    .mini {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.58);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .footer {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">EyeSpy Legal</div>
+      <h1>Privacy Policy</h1>
+      <p class="lede">
+        Effective date: March 28, 2026.
+        EyeSpy is a contact lens routine app. This policy explains what the app stores, what leaves the device,
+        and where third-party plumbing enters the picture.
+      </p>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>The short version</h2>
+        <p>
+          Most of your routine data stays on your device. EyeSpy uses that local data to power reminders,
+          history, widgets, and clinic-linked rebooking. We do not run a patient account system or a doctor dashboard
+          in this version. We do use third-party services for app purchases and install attribution.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>What EyeSpy stores on your device</h2>
+        <ul>
+          <li>Your nickname, selected pet guide, and app preferences.</li>
+          <li>Your lens type, replacement cycle, put-in time, take-out time, and reminder settings.</li>
+          <li>Your wear-session history, streak signals, reward events, and trial state.</li>
+          <li>Your last exam date if you choose to enter it.</li>
+          <li>Your linked clinic details if the app is linked to a doctor or clinic, such as clinic code, doctor name, booking URL, and link source.</li>
+          <li>Widget state needed to show live status on your Home Screen.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>What may leave the device</h2>
+        <div class="mini">
+          <div class="mini-card">
+            <strong>AppsFlyer attribution</strong>
+            <p class="muted">
+              EyeSpy integrates AppsFlyer to handle install attribution and deep-link routing for doctor-linked setup flows.
+              When the app starts or a linked install/open is processed, technical attribution data and link parameters may be sent to AppsFlyer.
+            </p>
+          </div>
+          <div class="mini-card">
+            <strong>StoreKit purchases</strong>
+            <p class="muted">
+              In-app purchases and restore actions are processed by Apple through StoreKit. EyeSpy receives product and entitlement results from Apple, not your full payment card data.
+            </p>
+          </div>
+          <div class="mini-card">
+            <strong>Clinic lookup</strong>
+            <p class="muted">
+              If you enter a clinic code, EyeSpy may query a small remote doctor registry so it can confirm the clinic and prepare the correct booking destination.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>What EyeSpy does not do in this version</h2>
+        <ul>
+          <li>We do not run a user account system for patients.</li>
+          <li>We do not give clinics a patient-level dashboard.</li>
+          <li>We do not sell your routine data.</li>
+          <li>We do not use your data for in-app ads.</li>
+          <li>We do not provide medical diagnosis, treatment, or emergency care.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Notifications, widgets, and doctor links</h2>
+        <p>
+          EyeSpy asks for notification permission so it can schedule local reminders on your device.
+          If you use the widget, the app stores a compact status snapshot in the shared app group used by the widget extension.
+          If you link the app to a clinic, EyeSpy keeps that doctor context locally so reminders and booking actions can point back to the right place.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Third-party services</h2>
+        <ul>
+          <li>Apple StoreKit for in-app purchases and purchase restoration.</li>
+          <li>AppsFlyer for install attribution and deep-link handling. AppsFlyer privacy information: <a href="https://www.appsflyer.com/legal/services-privacy-policy/" target="_blank" rel="noopener noreferrer">appsflyer.com/legal/services-privacy-policy</a>.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Your choices</h2>
+        <ul>
+          <li>You can turn notifications off in iOS Settings.</li>
+          <li>You can change or clear your linked clinic inside EyeSpy Settings.</li>
+          <li>You can remove the app to delete local data stored only on the device, subject to any data Apple or third-party services maintain for their own legal or operational reasons.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Contact</h2>
+        <p>
+          Questions, support requests, or privacy issues: <a href="mailto:kai@eyespy.care">kai@eyespy.care</a>
+        </p>
+        <p class="muted">
+          If EyeSpy’s data practices change, this policy will be updated before those changes are shipped. No smoke, no mirrors.
+        </p>
+      </section>
+    </div>
+
+    <p class="footer">
+      EyeSpy Support: <a href="/support/">/support/</a>
+    </p>
+  </main>
+</body>
+</html>
